@@ -13,7 +13,7 @@ class SquadList extends Component {
       {'name': 'Arsene Wenger', 'role': 'manager', 'image': 'Arsene Wenger.jpg'},
       {'number': 6, 'name': 'Laurent Koscielny', 'role': 'defender', 'image': 'Laurent Koscielny.png'},
       {'number': 11, 'name': 'Mesut Ozil', 'role': 'midfielder', 'image': 'Mesut Ozil.png'},
-      {'number': 14, 'name': 'Pierre-Emerick Aubameyang', 'role': 'forward', 'image': ''}
+      {'number': 14, 'name': 'Pierre-Emerick Aubameyang', 'role': 'forward', 'image': 'Pierre-Emerick Aubameyang.png'}
     ]
   }
 
