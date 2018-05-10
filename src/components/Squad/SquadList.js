@@ -10,15 +10,22 @@ class SquadList extends Component {
 
   state = {
     squad: [
-      {'name': 'Arsene Wenger', 'role': 'manager', 'image': 'Arsene Wenger.jpg'},
-      {'number': 6, 'name': 'Laurent Koscielny', 'role': 'defender', 'image': 'Laurent Koscielny.png'},
-      {'number': 11, 'name': 'Mesut Ozil', 'role': 'midfielder', 'image': 'Mesut Ozil.png'},
-      {'number': 14, 'name': 'Pierre-Emerick Aubameyang', 'role': 'forward', 'image': 'Pierre-Emerick Aubameyang.png'}
-    ]
+      {'name': 'Arsene Wenger', 'role': 'manager', 'image': 'Arsene Wenger.jpg', 'status': 'active'},
+      {'number': 6, 'name': 'Laurent Koscielny', 'role': 'defender', 'image': 'Laurent Koscielny.png', 'status': 'active'},
+      {'number': 11, 'name': 'Mesut Ozil', 'role': 'midfielder', 'image': 'Mesut Ozil.png', 'status': 'active'},
+      {'number': 14, 'name': 'Pierre-Emerick Aubameyang', 'role': 'forward', 'image': 'Pierre-Emerick Aubameyang.png', 'status': 'active'}
+    ],
+    dialogOpen: false,
+    currentImg: ''
   }
 
-  handleOpen = () => {
-      
+  handleOpen = img => {
+    this.setState({ dialogOpen: true, currentImg: img });
+    console.log(this.state.dialogOpen)
+  };
+
+  handleClose = () => {
+    this.setState({ dialogOpen: false });
   };
 
   render() {
@@ -46,7 +53,7 @@ class SquadList extends Component {
               </span>
             }
             actionIcon={
-              <IconButton onClick={() => this.handleOpen()}>
+              <IconButton onClick={() => this.handleOpen('images/' + member.image)}>
                 <ZoomIn color="white" />
               </IconButton>
             }
@@ -56,11 +63,29 @@ class SquadList extends Component {
         ))}
       </GridList>
     );
+
+    const actions = [
+      <FlatButton label="Close" primary={true} onClick={this.handleClose} />
+    ];
+
     return (
         <div id="squadlist">
+
           {squad}
+
+          <Dialog
+            actions={actions}
+            modal={false}
+            open={this.state.dialogOpen}
+            autoScrollBodyContent={true}
+            onRequestClose={this.handleClose}>
+
+            <img src={this.state.currentImg} alt="" style={{ width: '100%' }}/>
+
+          </Dialog>
         </div>
     );
+
   }
 }
 
