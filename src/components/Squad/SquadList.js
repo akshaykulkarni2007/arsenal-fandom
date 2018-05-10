@@ -10,10 +10,11 @@ class SquadList extends Component {
 
   state = {
     squad: [
-      {'name': 'Arsene Wenger', 'role': 'manager', 'image': 'Arsene Wenger.jpg', 'status': 'active'},
-      {'number': 6, 'name': 'Laurent Koscielny', 'role': 'defender', 'image': 'Laurent Koscielny.png', 'status': 'active'},
-      {'number': 11, 'name': 'Mesut Ozil', 'role': 'midfielder', 'image': 'Mesut Ozil.png', 'status': 'active'},
-      {'number': 14, 'name': 'Pierre-Emerick Aubameyang', 'role': 'forward', 'image': 'Pierre-Emerick Aubameyang.png', 'status': 'active'}
+      {'name': 'Arsene Wenger', 'role': 'manager', 'image': 'Arsene Wenger.jpg', 'joined': '1996', 'left': ''},
+      {'number': 6, 'name': 'Laurent Koscielny', 'role': 'defender', 'image': 'Laurent Koscielny.png', 'joined': '2010', 'left': ''},
+      {'number': 11, 'name': 'Mesut Ozil', 'role': 'midfielder', 'image': 'Mesut Ozil.png', 'joined': '2013', 'left': ''},
+      {'number': 14, 'name': 'Pierre-Emerick Aubameyang', 'role': 'forward', 'image': 'Pierre-Emerick Aubameyang.png', 'joined': '2018', 'left': ''},
+      {'name': 'Olivier Giroud', 'role': 'forward', 'image': '', 'joined': '2013', 'left': '2018'}
     ],
     dialogOpen: false,
     currentImg: ''
@@ -43,14 +44,17 @@ class SquadList extends Component {
 
     let squad = (
       <GridList cols={3} cellHeight={350} style={styles.gridList}>
+        
         {this.state.squad.map(member => (
+
           <GridTile 
             key = {member.number}
             title = {<span style={styles.title}>{member.number} {member.name}</span>}
             subtitle = {
-              <span>
+              <div>
                 <strong style={styles.role}>{member.role}</strong>
-              </span>
+                <span style={{'float': 'right'}}>{member.joined} - {member.left}</span>
+              </div>
             }
             actionIcon={
               <IconButton onClick={() => this.handleOpen('images/' + member.image)}>
@@ -60,7 +64,9 @@ class SquadList extends Component {
           >
           <img src={'images/' + member.image}  alt={member.name}/>
           </GridTile>
+
         ))}
+
       </GridList>
     );
 
